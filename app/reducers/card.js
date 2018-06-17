@@ -29,7 +29,6 @@ export const getAllCards = () => async dispatch => {
 export const addNewCards = words => async dispatch => {
   const cardsObject = {words,  sourceLang: 'es', targetLang: 'en'}
   const { data } = await axios.post(`/api/cards`, cardsObject)
-  console.log('ADDED', data)
   dispatch(addedNewCards(data))
 }
 
@@ -51,6 +50,11 @@ export const editExample = (card, id) => async dispatch => {
     examplesObject: card.examplesObject,
     id
   })
+  dispatch(editedCard(data))
+}
+
+export const editLevel = (cardId, level) => async dispatch => {
+  const { data } = await axios.put(`/api/cards/${cardId}/level`, {level})
   dispatch(editedCard(data))
 }
 

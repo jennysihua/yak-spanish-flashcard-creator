@@ -31,6 +31,10 @@ const Card = db.define('card', {
   },
   lexicalInfo: {
     type: Sequelize.TEXT,
+  },
+  level: {
+    type: Sequelize.INTEGER,
+    defaultValue: 1
   }
 })
 

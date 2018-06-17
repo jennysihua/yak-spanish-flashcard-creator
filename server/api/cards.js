@@ -24,6 +24,7 @@ router.post('/', async (req, res, next) => {
           example: 'Not found',
           lexicalInfo: 'Not found',
           userId: req.user.id,
+          level: 1,
         })}
 
         const dictionaryObject = definition.results[0] ? definition.results[0].lexicalEntries : null
@@ -55,6 +56,7 @@ router.post('/', async (req, res, next) => {
           example,
           lexicalInfo,
           userId: req.user.id,
+          level: 1,
         })
       })
     )
@@ -113,6 +115,18 @@ router.put('/:id/example', async (req, res, next) => {
     const updatedCard = await card.update({
       examplesIndex: id,
       example,
+    })
+    res.send(updatedCard)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/:id/level', async (req, res, next) => {
+  try {
+    const card = await Card.findById(req.params.id)
+    const updatedCard = await card.update({
+      level: req.body.level
     })
     res.send(updatedCard)
   } catch (err) {

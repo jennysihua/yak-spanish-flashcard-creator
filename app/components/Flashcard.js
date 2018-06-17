@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {FlashcardRect} from './'
+import {editLevel} from '../reducers'
 
 class Flashcard extends React.Component {
   constructor () {
@@ -11,7 +12,7 @@ class Flashcard extends React.Component {
     }
   }
 
-  clickHandler = () => {
+  nextCard = () => {
     if (this.props.cards.length) {
       this.setState({currentCard: this.props.cards[Math.floor(Math.random() * this.props.cards.length)]})
     } else {
@@ -19,6 +20,10 @@ class Flashcard extends React.Component {
     }
   }
 
+  rateCard = () => {
+    console.log('HERE')
+    this.props.editLevel(this.state.currentCard.id, 5)
+  }
 
   toggleAnswer = () => {
     console.log('TOGGGLE')
@@ -41,7 +46,7 @@ class Flashcard extends React.Component {
 
     else if (term === 'Click here to study') {
       return (
-        <div className="flashcard-container" onClick={() => this.clickHandler()}>
+        <div className="flashcard-container" onClick={() => this.nextCard()}>
           <div className="flashcard-message">Click here to study</div>
         </div>
       )
@@ -58,6 +63,7 @@ class Flashcard extends React.Component {
             <div><b>Example:</b> {example}</div>
           </div>
         </FlashcardRect>
+        <div onClick={() => this.rateCard()}>Rate me</div>
       </div>
     )
   } else {
@@ -78,5 +84,8 @@ const mapStateToProps = state => ({
   cards: state.cards
 })
 
+const mapDispatchToProps = dispatch => ({
+  editLevel: (cardId, level) => dispatch(editLevel(cardId, level))
+})
 
-export default connect(mapStateToProps, null)(Flashcard)
+export default connect(mapStateToProps, mapDispatchToProps)(Flashcard)
