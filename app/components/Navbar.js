@@ -7,7 +7,7 @@ const Navbar = props => {
   if  (props.user.id) {
     return (
       <nav>
-        <Link to="/">
+        <Link to="/learn">
           <span>Learn</span>
         </Link>
         <Link to="/cards">
