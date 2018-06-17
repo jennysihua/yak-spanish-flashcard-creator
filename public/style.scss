@@ -297,3 +297,34 @@ nav span {
   border-bottom: 1px solid red;
   box-shadow: 0 1px 0 0 #000;
 }
+
+.flashcard-container {
+  position: relative;
+}
+
+.flashcard-rect .card {
+  position: fixed;
+  // top: 100px;
+  // left: 200px;
+  height: 200px;
+  width: 400px;
+}
+
+// .flashcard-rect .row {
+//   height: 100%;
+// }
+
+.card-front {
+  z-index: 3;
+  margin: auto;
+  color: black;
+  background-color: magenta
+}
+
+.card-back {
+  z-index: 2
+}
+
+.hideAnswer {
+  display: none
+}

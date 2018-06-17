@@ -19,11 +19,8 @@ class Learn extends React.Component {
   }
 
   render () {
-    console.log('cards', this.props.cards)
-    console.log('cards length', this.props.cards.length)
-    console.log('card index', Math.floor(Math.random * this.props.cards.length))
     return (
-      <div onClick={event => this.clickHandler(event)}>
+      <div>
         <Flashcard clickHandler={this.clickHandler} card={this.state.currentCard} />
       </div>
     )

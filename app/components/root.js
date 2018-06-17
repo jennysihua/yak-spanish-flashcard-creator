@@ -15,7 +15,8 @@ import {
   Learn,
   Home,
   AllDecks,
-  SingleDeck
+  SingleDeck,
+  Flashcard
 } from './'
 
 class Root extends Component {
@@ -29,7 +30,7 @@ class Root extends Component {
     return (
       <div>
         <Navbar />
-        <Route path="/learn" exact component={Learn} />
+        <Route path="/learn" exact component={Flashcard} />
         <Route path="/home" exact component={Home} />
         <Route path="/cards" exact component={AllCards} />
         <Route path="/cards/:id" exact component={SingleCard} />
