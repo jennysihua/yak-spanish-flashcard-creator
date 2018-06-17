@@ -29,12 +29,12 @@ class Flashcard extends React.Component {
 
   render () {
     console.log('PROPS', this.props)
-    const {term, translation, definition, lexicalInfo,  example} = this.state.currentCard
+    const {term, translation, lexicalInfo,  example} = this.state.currentCard
 
     if (term === 'No cards to study') {
       return (
         <div className="flashcard-container">
-          No cards to study
+          <div className="flashcard-message">No cards to study</div>
         </div>
       )
     }
@@ -42,27 +42,32 @@ class Flashcard extends React.Component {
     else if (term === 'Click here to study') {
       return (
         <div className="flashcard-container" onClick={() => this.clickHandler()}>
-          Click here to study
+          <div className="flashcard-message">Click here to study</div>
         </div>
       )
     }
 
-    else {
+    else if (this.state.viewAnswer) {
       return (
       <div className="flashcard-container">
-        <FlashcardRect toggleAnswer={this.toggleAnswer}>
-          <div className="card-front">
-            <div>{term}</div>
-          </div>
-        </FlashcardRect>
+
         <FlashcardRect toggleAnswer={this.toggleAnswer} >
-          <div className={`card-back ${this.state.viewAnswer ? `viewAnswer` : `hideAnswer`}`}>
-            <div>Translation: {translation}</div>
-            <div>Definition: {definition}</div>
-            <div>Lexical Info: {lexicalInfo}</div>
-            <div>Example: {example}</div>
+          <div className="card-back">
+            <div><b>Translation:</b> {translation}</div>
+            <div><b>Lexical Info:</b> {lexicalInfo}</div>
+            <div><b>Example:</b> {example}</div>
           </div>
         </FlashcardRect>
+      </div>
+    )
+  } else {
+    return (
+      <div className="flashcard-container">
+      <FlashcardRect toggleAnswer={this.toggleAnswer}>
+      <div className="card-front">
+        <div>{term}</div>
+      </div>
+      </FlashcardRect>
       </div>
     )
   }

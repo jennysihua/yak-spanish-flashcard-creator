@@ -298,31 +298,33 @@ nav span {
   box-shadow: 0 1px 0 0 #000;
 }
 
+
 .flashcard-container {
+  margin-top: 100px;
   position: relative;
 }
 
 .flashcard-rect .card {
-  position: fixed;
-  // top: 100px;
-  // left: 200px;
-  height: 200px;
+  height: 300px;
   width: 400px;
-}
-
-// .flashcard-rect .row {
-//   height: 100%;
-// }
-
-.card-front {
-  z-index: 3;
   margin: auto;
-  color: black;
-  background-color: magenta
+  padding: 15px;
 }
 
-.card-back {
-  z-index: 2
+.card-front div {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.card-back div {
+  font-family: 'Quicksand', sans-serif;
+  margin-bottom: 10px;
+}
+
+.flashcard-message {
+  text-align: center;
+  margin-top: 100px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.2rem;
 }
 
 .hideAnswer {
