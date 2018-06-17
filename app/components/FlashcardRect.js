@@ -5,9 +5,7 @@ const FlashcardRect = props => {
     <div className="flashcard-rect" onClick={() => props.toggleAnswer()}>
       <div className="row">
         <div className="card horizontal">
-          <div>
             {props.children}
-          </div>
         </div>
       </div>
     </div>

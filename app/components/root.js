@@ -12,7 +12,6 @@ import {
   SingleCard,
   Navbar,
   AuthForm,
-  Learn,
   Home,
   AllDecks,
   SingleDeck,

@@ -24,7 +24,6 @@ router.post('/', async (req, res, next) => {
 
 router.post('/:deckId/:cardId', async (req, res, next) => {
   try {
-    console.log('inside')
     const deck = await Deck.findOne({
       where: {id: req.params.deckId}
     })

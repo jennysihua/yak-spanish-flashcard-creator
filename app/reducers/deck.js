@@ -28,6 +28,7 @@ export const getAllDecks = () => async dispatch => {
 
 export const addNewDeck = deck => async dispatch => {
   const { data } = await axios.post(`/api/decks`, deck)
+  console.log('added deck', data)
   dispatch(addedNewDeck(data))
 }
 
@@ -52,7 +53,7 @@ export default (state = initialState, action) => {
       return action.decks
     }
     case ADD_NEW_DECK: {
-      return [...state, ...action.deck]
+      return [...state, action.deck]
     }
     case EDIT_DECK: {
       return state.map(deck => {

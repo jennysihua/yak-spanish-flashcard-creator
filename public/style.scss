@@ -330,3 +330,28 @@ nav span {
 .hideAnswer {
   display: none
 }
+
+.rating-container {
+  position: absolute;
+  bottom: 0;
+  margin-left: 15%;
+}
+
+.rating-levels-container {
+  display: flex;
+  justify-content: space-around
+}
+
+.card-front {
+  text-align: center;
+  margin: auto;
+}
+
+.deck-list {
+  text-align: center;
+  margin: 5px;
+}
+
+.deck-list a {
+  font-family: 'Poiret One', cursive;  font-size: 1.3rem
+}

@@ -17,7 +17,7 @@ const DeckRow = props => {
             <div className="card-text">{deck.description}</div>
           </div>
           <div className="col m3 card-section">
-            <div className="card-text">{deck.cards.length}</div>
+            <div className="card-text">{deck.cards ? deck.cards.length : 0}</div>
           </div>
           <div className="col m3 card-section">
             <div className="card-text">{Date(deck.createdAt)}</div>

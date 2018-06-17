@@ -8,32 +8,46 @@ class Flashcard extends React.Component {
     super()
     this.state = {
       currentCard: {term: 'Click here to study'},
-      viewAnswer: false
+      currentCards: [],
+      viewAnswer: false,
     }
   }
 
   nextCard = () => {
-    if (this.props.cards.length) {
-      this.setState({currentCard: this.props.cards[Math.floor(Math.random() * this.props.cards.length)]})
+    if (this.state.currentCards.length) {
+      this.setState((state) => ({
+        currentCard: state.currentCards[Math.floor(Math.random() * state.currentCards.length)]
+      }))
     } else {
       this.setState({currentCard: {term: 'No cards to study'}})
     }
   }
 
-  rateCard = () => {
-    console.log('HERE')
-    this.props.editLevel(this.state.currentCard.id, 5)
+  rateCard = level => {
+    this.props.editLevel(this.state.currentCard.id, level)
+    this.nextCard()
   }
 
   toggleAnswer = () => {
-    console.log('TOGGGLE')
     this.setState((state) => ({
       viewAnswer: !state.viewAnswer
     }))
   }
 
+  setDeck = deck => {
+    console.log('in deck setter', deck)
+    console.log('in deck setter cards', deck.cards)
+    this.setState({currentCards: 'hello'})
+    console.log('state of cards', this.state)
+    console.log('current cards', this.state.currentCards)
+  }
+
+  allCards = () => {
+    this.setState({currentCards: this.props.cards})
+    console.log('all cards', this.state)
+  }
+
   render () {
-    console.log('PROPS', this.props)
     const {term, translation, lexicalInfo,  example} = this.state.currentCard
 
     if (term === 'No cards to study') {
@@ -47,7 +61,16 @@ class Flashcard extends React.Component {
     else if (term === 'Click here to study') {
       return (
         <div className="flashcard-container" onClick={() => this.nextCard()}>
-          <div className="flashcard-message">Click here to study</div>
+          <div className="flashcard-message">Choose a deck to study</div>
+          <div className="deck-list" onClick={() => this.allCards()}><a>All Cards</a></div>
+          {this.props.decks.map(deck => (
+          <div
+            key={deck.id}
+            className="deck-list"
+            onClick={() => {this.setDeck(deck)}}
+          >
+            <a>{deck.name}</a>
+          </div>))}
         </div>
       )
     }
@@ -61,9 +84,18 @@ class Flashcard extends React.Component {
             <div><b>Translation:</b> {translation}</div>
             <div><b>Lexical Info:</b> {lexicalInfo}</div>
             <div><b>Example:</b> {example}</div>
+            <div className="rating-container">
+              <div>Rate how well you know this card</div>
+              <div className="rating-levels-container">
+                <a onClick={() => this.rateCard(1)}>1</a>
+                <a onClick={() => this.rateCard(2)}>2</a>
+                <a onClick={() => this.rateCard(3)}>3</a>
+                <a onClick={() => this.rateCard(4)}>4</a>
+                <a onClick={() => this.rateCard(5)}>5</a>
+              </div>
+            </div>
           </div>
         </FlashcardRect>
-        <div onClick={() => this.rateCard()}>Rate me</div>
       </div>
     )
   } else {
@@ -81,7 +113,8 @@ class Flashcard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  cards: state.cards
+  cards: state.cards,
+  decks: state.decks,
 })
 
 const mapDispatchToProps = dispatch => ({

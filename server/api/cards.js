@@ -60,7 +60,6 @@ router.post('/', async (req, res, next) => {
         })
       })
     )
-    console.log(entries)
     res.send(entries)
   } catch (err) {
     next(err)

@@ -27,7 +27,9 @@ const SingleDeck = props => {
                 <div className="term">
                   {deck.cards.map(card => {
                   return (
-                    <div key={card.id} onClick={() => {props.removeCardFromDeck(deck.id, card.id)}}>{card.term}</div>
+                    <div key={card.id}>
+                      <a onClick={() => {props.removeCardFromDeck(deck.id, card.id)}}>{card.term}</a>
+                    </div>
                   )})}
                 </div>
               </div>
@@ -44,7 +46,10 @@ const SingleDeck = props => {
                 <div className="term">
                   {props.cards.map(card => {
                     if (deckCards.indexOf(card.id) === -1) {
-                      return (<div key={card.id} onClick={() => {props.addCardToDeck(deck.id, card.id)}}>{card.term}</div>)
+                      return (
+                      <div key={card.id}>
+                        <a onClick={() => {props.addCardToDeck(deck.id, card.id)}}>{card.term}</a>
+                      </div>)
                     }
                   })}
                 </div>
