@@ -1,0 +1,299 @@
+$secondary: rgb(202, 233, 214);
+$on-primary: rgba(74, 74, 74, .8);
+$primary: rgba(230, 221, 210, .5);
+$background: rgb(240, 238, 235);
+$nav: black;
+$hover: rgba(44, 120, 82, 0.714);
+$header: rgb(196, 178, 178);
+
+* {
+  font-family: arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $background;
+}
+
+.card-row-container {
+  width: 80%;
+  height: 150px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.deck-row {
+  height: 100px;
+}
+
+.single-card-container, .single-deck-container {
+  margin-top: 90px
+}
+
+.single-card {
+  width: 80%;
+  margin: 20px auto;
+  position: relative;
+}
+
+.card-row-container .row {
+  height: 100%;
+}
+
+
+.card-button-container {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  bottom: 15px;
+  text-align: center;
+}
+
+.card-row-container .card {
+  height: 100%;
+  background-color: $primary
+}
+
+.card-section {
+  height: 100%;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.card-section span {
+  font-family: 'Quicksand', sans-serif;
+  font-size: .8rem;
+  color: $on-primary
+}
+
+.card-section div {
+  font-family: 'Quicksand', sans-serif;
+  margin: auto;
+}
+
+.card-row-container.card-section div {
+  margin: auto;
+}
+
+.card-text {
+  margin: auto;
+  font-family: 'Quicksand', sans-serif;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.card-border {
+  border-left: lightgray dashed 1px;
+}
+
+.all-cards-container, .all-decks-container {
+  margin-top: 160px;
+}
+
+.all-items-header {
+  height: 60px;
+  margin: 70px 10%;
+  width: 80%;
+  position: fixed;
+  top: 0;
+  z-index: 2
+}
+
+.all-items-header .row {
+  background-color: $header;
+  height: 100%;
+}
+
+
+.all-items-header .card {
+  background-color: $header;
+  height: 100%;
+}
+
+
+.card-button-container input {
+  border: none;
+  margin: 0 10px;
+  background-color: transparent;
+  color: $on-primary;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+button:hover {
+  color: $hover;
+}
+
+button:focus {
+  background-color: transparent
+}
+
+input:focus {
+  outline: none;
+}
+
+input:hover {
+  color: $hover;
+  text-decoration: underline
+}
+
+input:disabled {
+  color: transparent
+}
+
+.editButton {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: .8rem;
+
+}
+
+a {
+  color: $on-primary;
+}
+
+a:hover {
+  color: $hover;
+  text-decoration: underline;
+}
+
+.editButton:hover {
+  color: $hover;
+  text-decoration: underline;
+}
+
+.translations-container {
+  width: 100%;
+}
+
+.example, .translation, .term {
+  margin-bottom: 25px !important;
+  text-align: left;
+}
+
+/* Nav bar styles*/
+
+nav {
+  height: 60px;
+  top: 0;
+  position: fixed;
+  background-color: $nav;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10%;
+  z-index: 2;
+}
+
+nav span {
+  font-family: 'Poiret One', cursive;
+  font-size: 1.3rem;
+}
+
+.fade {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 130px;
+  background: linear-gradient(to bottom, $background, transparent);
+  z-index: 1;
+}
+
+.addButton {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
+
+.material-icons.md-36 { font-size: 36px; }
+
+.material-icons.md-42 { font-size: 42px; }
+
+
+.input-new-modal {
+  margin: auto;
+  margin-top: 30vh;
+  width: 30%;
+  height: 40%;
+  background-color: $header;
+  position: relative;
+}
+
+.input-new-textarea {
+  width: 80%;
+  height: 60%;
+  margin: 10%;
+}
+
+.close-modal-button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.submit-modal-button {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+}
+
+.selectedExample {
+  color: $hover;
+}
+
+.notSelectedExample:hover {
+  color: $hover;
+  text-decoration: underline;
+}
+
+.card-button-container input {
+  font-family: 'Quicksand', sans-serif;
+  font-size: .8rem;
+}
+
+.auth-form-container {
+  margin-top: 15%;
+}
+
+.auth-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form div {
+  margin: 0 10px
+}
+
+   /* label focus color */
+.input-field input[type=text]:focus + label {
+  color: $hover;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid $hover;
+  box-shadow: 0 1px 0 0 $hover;
+}
+
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid $hover;
+  box-shadow: 0 1px 0 0 $hover;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid red;
+  box-shadow: 0 1px 0 0 #000;
+}

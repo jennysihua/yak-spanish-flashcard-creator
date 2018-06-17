@@ -1,0 +1,56 @@
+{
+  "name": "language-learner",
+  "version": "0.0.1",
+  "description": "A review time project",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "webpack -w & nodemon main.js -e html,js,css --ignore public",
+    "start": "node main"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "skeleton"
+  ],
+  "dependencies": {
+    "@material/card": "^0.36.0",
+    "@material/elevation": "^0.35.0",
+    "@material/layout-grid": "^0.34.0",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "chalk": "^2.4.1",
+    "connect-session-sequelize": "^5.2.1",
+    "express": "^4.14.0",
+    "express-session": "^1.15.6",
+    "history": "^4.7.2",
+    "passport": "^0.4.0",
+    "pg": "^7.4.3",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-modal": "^3.4.5",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "sequelize": "^4.37.8",
+    "svg-inline-loader": "^0.8.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "style-loader": "^0.21.0",
+    "eslint": "^4.19.1",
+    "eslint-config-fullstack": "^5.0.0",
+    "eslint-plugin-react": "^7.8.2",
+    "volleyball": "^1.4.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  }
+}
