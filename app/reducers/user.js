@@ -28,7 +28,7 @@ export const auth = (email, password, method) =>
     try {
       const {data} = await axios.post(`/auth/${method}`, { email, password })
       try { dispatch(getUser(data))
-      history.push('/home') } catch (authError) {
+      history.push('/learn') } catch (authError) {
         dispatch(getUser({error: authError}))
       }
     } catch (err) {

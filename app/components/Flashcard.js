@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {FlashcardRect} from './'
 import {editLevel} from '../reducers'
+import {Link} from 'react-router-dom'
 
 class Flashcard extends React.Component {
   constructor () {
@@ -19,7 +20,7 @@ class Flashcard extends React.Component {
         currentCard: state.currentCards[Math.floor(Math.random() * state.currentCards.length)]
       }))
     } else {
-      this.setState({currentCard: {term: 'No cards to study'}})
+      this.setState({currentCard: {}})
     }
   }
 
@@ -52,7 +53,7 @@ class Flashcard extends React.Component {
     if (!this.props.cards.length) {
       return (
         <div className="flashcard-container">
-          <div className="flashcard-message">No cards to study</div>
+          <div className="flashcard-message">No cards to study - <Link to="/cards">create some now</Link></div>
         </div>
       )
     }
@@ -77,7 +78,6 @@ class Flashcard extends React.Component {
     else if (this.state.viewAnswer) {
       return (
       <div className="flashcard-container">
-
         <FlashcardRect toggleAnswer={this.toggleAnswer} >
           <div className="card-back">
             <div><b>Translation:</b> {translation}</div>

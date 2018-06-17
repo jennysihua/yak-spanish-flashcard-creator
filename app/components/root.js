@@ -28,7 +28,7 @@ class Root extends Component {
   render () {
     return (
       <div>
-        <Navbar />
+        <Route path="/" component={Navbar} />
         <Route path="/learn" exact component={Flashcard} />
         <Route path="/home" exact component={Home} />
         <Route path="/cards" exact component={AllCards} />

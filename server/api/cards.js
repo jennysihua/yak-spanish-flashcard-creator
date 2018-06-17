@@ -11,7 +11,6 @@ router.post('/', async (req, res, next) => {
 
     const entries = await Promise.all(
       definitions.map((definition, index) => {
-        console.log('HERE', !!definition)
         if (!definition.results) {return Card.create({
           term: definition,
           dictionaryObject: [],
@@ -37,7 +36,9 @@ router.post('/', async (req, res, next) => {
           translation
         } = extractDefinitionData(dictionaryObject, initialIndex)
 
-        const examplesObject = examples[index].results ? examples[index].results[0].lexicalEntries[0].sentences : null
+        const examplesPresent = examples[index] ? examples[index].results : null
+
+        const examplesObject = examplesPresent ? examplesPresent[0].lexicalEntries[0].sentences : null
 
         const {
           exampleIndices,

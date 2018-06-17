@@ -18,6 +18,7 @@ const AuthForm = props => {
 
   return (
     <div className="auth-form-container">
+      <div className="title-font">{props.location.pathname === '/login' ? 'Log In' : 'Sign Up'}</div>
       <form onSubmit={handleSubmit} name={name} className="auth-form" >
         <div className="auth-fields">
           <div className="row">
