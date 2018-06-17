@@ -22,7 +22,10 @@ const CardRow = props => {
       <div className="row">
         <div className="card horizontal">
           <div className="col m3 card-section">
-            <div className="card-text">{card.term}</div>
+            <div className="card-text">
+              <div>{card.term}</div>
+              <div className="card-level">Knowledge level: {card.level}</div>
+            </div>
           </div>
           <div className="col m3 card-section">
             <div className="card-text">{card.translation}</div>

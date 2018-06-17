@@ -7,7 +7,7 @@ class Flashcard extends React.Component {
   constructor () {
     super()
     this.state = {
-      currentCard: {term: 'Click here to study'},
+      currentCard: {},
       currentCards: [],
       viewAnswer: false,
     }
@@ -34,23 +34,22 @@ class Flashcard extends React.Component {
     }))
   }
 
-  setDeck = deck => {
-    console.log('in deck setter', deck)
-    console.log('in deck setter cards', deck.cards)
-    this.setState({currentCards: 'hello'})
-    console.log('state of cards', this.state)
-    console.log('current cards', this.state.currentCards)
+  setDeck = async deck => {
+    await this.setState({currentCards: deck.cards})
+    await this.setState({currentCard: deck.cards[Math.floor(Math.random() * deck.cards.length)]})
+    console.log(this.state, 'in setdeck')
   }
 
-  allCards = () => {
-    this.setState({currentCards: this.props.cards})
+  allCards = async () => {
+    await this.setState({currentCards: this.props.cards})
+    await this.setState({currentCard: this.props.cards[Math.floor(Math.random() * this.props.cards.length)]})
     console.log('all cards', this.state)
   }
 
   render () {
-    const {term, translation, lexicalInfo,  example} = this.state.currentCard
+    const {term, translation, lexicalInfo, example} = this.state.currentCard
 
-    if (term === 'No cards to study') {
+    if (!this.props.cards.length) {
       return (
         <div className="flashcard-container">
           <div className="flashcard-message">No cards to study</div>
@@ -58,7 +57,7 @@ class Flashcard extends React.Component {
       )
     }
 
-    else if (term === 'Click here to study') {
+    else if (!this.state.currentCard.term) {
       return (
         <div className="flashcard-container" onClick={() => this.nextCard()}>
           <div className="flashcard-message">Choose a deck to study</div>
