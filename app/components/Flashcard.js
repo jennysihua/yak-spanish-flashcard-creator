@@ -58,7 +58,7 @@ class Flashcard extends React.Component {
   }
 
   render () {
-    const {term, translation, lexicalInfo, example} = this.state.currentCard
+    const {term, translation, lexicalInfo, example} = this.state.currentCard ? this.state.currentCard : {term: null, translation: null, lexicalInfo: null, example: null}
 
     if (!this.props.cards.length) {
       return (
@@ -68,7 +68,7 @@ class Flashcard extends React.Component {
       )
     }
 
-    else if (!this.state.currentCard.term) {
+    else if (!this.state.currentCard || !this.state.currentCard.term) {
       return (
         <div className="flashcard-container" onClick={() => this.nextCard()}>
           <div className="flashcard-message">Choose a deck to study</div>
