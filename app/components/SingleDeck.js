@@ -9,7 +9,7 @@ const SingleDeck = props => {
     return (dck.id === Number(props.match.params.id))
   }) : null
 
-  const deckCards = deck ? deck.cards.map(card => card.id) : []
+  const deckCards = (deck && deck.cards) ? deck.cards.map(card => card.id) : []
 
   const handleClick = () => {
     props.deleteDeck(deck.id)
@@ -29,12 +29,12 @@ const SingleDeck = props => {
               </div>
               <div className="col m9 card-section">
                 <div className="term">
-                  {deck.cards.map(card => {
+                  {deck.cards ? deck.cards.map(card => {
                   return (
                     <div key={card.id}>
                       <a onClick={() => {props.removeCardFromDeck(deck.id, card.id)}}>{card.term}</a>
                     </div>
-                  )})}
+                  )}) : <div />}
                 </div>
               </div>
             </div>
