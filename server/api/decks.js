@@ -38,6 +38,15 @@ router.post('/:deckId/:cardId', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const deck = await Deck.findById(req.params.id)
+    await deck.destroy()
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.delete('/:deckId/:cardId', async (req, res, next) => {
   try {
     const deck = await Deck.findOne({

@@ -6,10 +6,10 @@ import {connect} from 'react-redux'
 //disable and set color to transparent if...
 
 const Navbar = props => {
-  console.log('params man', props.location.pathname)
   if  (props.user.id) {
     return (
       <nav>
+        <div className="site-title">Yak</div>
         {props.location.pathname === '/learn' ?
           (<span className="hide-nav">Learn</span>) : (
           <Link to="/learn">
@@ -39,6 +39,7 @@ const Navbar = props => {
   } else {
       return (
       <nav>
+        <div className="site-title">Yak</div>
         {props.location.pathname === '/login' ?
           (<span className="hide-nav">Log In</span>) : (
           <Link to="/login">

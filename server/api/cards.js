@@ -134,4 +134,13 @@ router.put('/:id/level', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const card = await Card.findById(req.params.id)
+    await card.destroy()
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

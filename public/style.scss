@@ -4,7 +4,8 @@ $primary: rgba(230, 221, 210, .5);
 $background: rgb(240, 238, 235);
 $nav: black;
 $hover: rgba(44, 120, 82, 0.714);
-$header: rgb(196, 178, 178);
+$header: rgba(196, 178, 178, .8);
+$delete: rgb(130, 37, 37);
 
 * {
   font-family: arial, sans-serif;
@@ -136,8 +137,18 @@ button {
   background: transparent;
 }
 
-button:hover {
+button.addButton:hover {
   color: $hover;
+}
+
+button.deleteButton:hover {
+  color: $delete;
+}
+
+.addButton, .deleteButton {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
 }
 
 button:focus {
@@ -162,7 +173,6 @@ input:disabled {
   right: 10px;
   top: 5px;
   font-size: .8rem;
-
 }
 
 a {
@@ -220,11 +230,7 @@ nav span {
   z-index: 1;
 }
 
-.addButton {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-}
+
 
 .material-icons.md-36 { font-size: 36px; }
 
@@ -283,7 +289,7 @@ nav span {
 }
 
 .auth-form div {
-  margin: 0 10px
+  margin: 4px 10px
 }
 
    /* label focus color */
@@ -376,4 +382,12 @@ nav span {
 
 nav span.hide-nav {
   color: darkslategray;
+}
+
+.site-title {
+  font-family: 'Julius Sans One', sans-serif;
+  position: absolute;
+  top: 0px;
+  left: 15px;
+  font-size: 1.5rem
 }

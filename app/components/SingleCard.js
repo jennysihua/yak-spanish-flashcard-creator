@@ -1,15 +1,26 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {editDefinition, editExample} from '../reducers'
+import {
+  editDefinition,
+  editExample,
+  deleteCard
+} from '../reducers'
+import history from '../history'
 
 const SingleCard = props => {
 
-  const card = props.cards ? props.cards.find(crd => {
+  const card = props.cards.length ? props.cards.find(crd => {
       return (crd.id === Number(props.match.params.id))
     }) : null
 
-  const cardDefinitions = (card.definition !== 'Not found'
-    ) ? (
+  const handleClick = () => {
+    props.deleteCard(card.id)
+    history.push('/cards')
+  }
+
+  if (card) {
+    const cardDefinitions = (card.definition !== 'Not found'
+      ) ? (
       <div className="translations-container">
       {card.dictionaryObject.map((definition, index) => {
         if (definition.entries[0].senses[0].translations) {
@@ -40,11 +51,10 @@ const SingleCard = props => {
         )
       })}
       </div>
-    ) : (
-      <div className="example notSelectedExample">'Not found'</div>
-    )
+  ) : (
+    <div className="example notSelectedExample">'Not found'</div>
+  )
 
-  if (card) {
     return (
       <div className="single-card-container">
         <div className="single-card">
@@ -89,6 +99,9 @@ const SingleCard = props => {
             </div>
           </div>
         </div>
+        <button className="deleteButton" onClick={() => handleClick()} type="submit">
+          <i className="material-icons md-36">delete_forever</i>
+        </button>
       </div>
 
 
@@ -106,7 +119,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   editDefinition: (card, id) => dispatch(editDefinition(card, id)),
-  editExample: (card, id) => dispatch(editExample(card, id))
+  editExample: (card, id) => dispatch(editExample(card, id)),
+  deleteCard: cardId => dispatch(deleteCard(cardId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleCard)

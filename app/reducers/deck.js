@@ -5,6 +5,7 @@ const initialState = []
 const GET_ALL_DECKS = 'GET_DECKS'
 const ADD_NEW_DECK = 'ADD_NEW_DECK'
 const EDIT_DECK = 'EDIT_DECK'
+const DELETE_DECK = 'DELETE_DECK'
 
 const gotAllDecks = decks => ({
   type: GET_ALL_DECKS,
@@ -19,6 +20,11 @@ const addedNewDeck = deck => ({
 const editedDeck = deck => ({
   type: EDIT_DECK,
   deck
+})
+
+const deletedDeck = deckId => ({
+  type: DELETE_DECK,
+  deckId
 })
 
 export const getAllDecks = () => async dispatch => {
@@ -47,6 +53,11 @@ export const removeCardFromDeck = (deckId, cardId) => async dispatch => {
   dispatch(editedDeck(data))
 }
 
+export const deleteDeck = deckId => async dispatch => {
+  await axios.delete(`/api/decks/${deckId}`)
+  dispatch(deletedDeck(deckId))
+}
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_DECKS: {
@@ -59,6 +70,11 @@ export default (state = initialState, action) => {
       return state.map(deck => {
         if (deck.id === action.deck.id) return action.deck
         return deck
+      })
+    }
+    case DELETE_DECK: {
+      return state.filter(deck => {
+        return Number(deck.id) !== Number(action.deckId)
       })
     }
     default: {

@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {editDeck, addCardToDeck, removeCardFromDeck} from '../reducers'
+import {editDeck, addCardToDeck, removeCardFromDeck, deleteDeck} from '../reducers'
+import history from '../history'
 
 const SingleDeck = props => {
 
@@ -10,7 +11,10 @@ const SingleDeck = props => {
 
   const deckCards = deck ? deck.cards.map(card => card.id) : []
 
-  console.log('DECK', deck)
+  const handleClick = () => {
+    props.deleteDeck(deck.id)
+    history.push('/decks')
+  }
 
   if (deck) {
     return (
@@ -57,6 +61,9 @@ const SingleDeck = props => {
             </div>
           </div>
         </div>
+        <button className="deleteButton" onClick={() => handleClick()} type="submit">
+          <i className="material-icons md-36">delete_forever</i>
+        </button>
       </div>
     )
   } else {
@@ -74,7 +81,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   editDeck: deck => dispatch(editDeck(deck)),
   addCardToDeck: (deckId, cardId) => dispatch(addCardToDeck(deckId, cardId)),
-  removeCardFromDeck: (deckId, cardId) => dispatch(removeCardFromDeck(deckId, cardId))
+  removeCardFromDeck: (deckId, cardId) => dispatch(removeCardFromDeck(deckId, cardId)),
+  deleteDeck: deckId => dispatch(deleteDeck(deckId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleDeck)

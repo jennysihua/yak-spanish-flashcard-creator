@@ -21,6 +21,8 @@ import {
 class Root extends Component {
   componentDidMount () {
     this.props.me()
+    this.props.getAllCards()
+    this.props.getAllDecks()
   }
 
   render () {

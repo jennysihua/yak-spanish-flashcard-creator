@@ -5,6 +5,7 @@ const initialState = []
 const GET_ALL_CARDS = 'GET_CARDS'
 const ADD_NEW_CARDS = 'ADD_NEW_CARDS'
 const EDIT_CARD = 'EDIT_CARD'
+const DELETE_CARD = 'DELETE_CARD'
 
 const gotAllCards = cards => ({
   type: GET_ALL_CARDS,
@@ -19,6 +20,11 @@ const addedNewCards = cards => ({
 const editedCard = card => ({
   type: EDIT_CARD,
   card
+})
+
+const deletedCard = cardId => ({
+  type: DELETE_CARD,
+  cardId
 })
 
 export const getAllCards = () => async dispatch => {
@@ -58,6 +64,11 @@ export const editLevel = (cardId, level) => async dispatch => {
   dispatch(editedCard(data))
 }
 
+export const deleteCard = cardId => async dispatch => {
+  await axios.delete(`/api/cards/${cardId}`)
+  dispatch(deletedCard(cardId))
+}
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_CARDS: {
@@ -70,6 +81,11 @@ export default (state = initialState, action) => {
       return state.map(card => {
         if (card.id === action.card.id) return action.card
         return card
+      })
+    }
+    case DELETE_CARD: {
+      return state.filter(card => {
+        return Number(card.id) !== Number(action.cardId)
       })
     }
     default: {
