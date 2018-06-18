@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {withRouter, Route} from 'react-router-dom'
+import {withRouter, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {
   getAllCards,
@@ -21,14 +21,22 @@ import {
 class Root extends Component {
   componentDidMount () {
     this.props.me()
-    this.props.getAllCards()
-    this.props.getAllDecks()
   }
 
   render () {
     return (
       <div>
         <Route path="/" component={Navbar} />
+        <Route
+          exact path="/"
+          render={() => (
+            this.props.user.id ? (
+              <Redirect to="/learn" />
+            ) : (
+              <Redirect to="/login" />
+            )
+          )}
+        />
         <Route path="/learn" exact component={Flashcard} />
         <Route path="/home" exact component={Home} />
         <Route path="/cards" exact component={AllCards} />

@@ -1,7 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {FlashcardRect} from './'
-import {editLevel} from '../reducers'
+import {
+  editLevel,
+  getAllCards,
+  getAllDecks,
+} from '../reducers'
 import {Link} from 'react-router-dom'
 
 class Flashcard extends React.Component {
@@ -9,9 +13,15 @@ class Flashcard extends React.Component {
     super()
     this.state = {
       currentCard: {},
+      deckName: '',
       currentCards: [],
       viewAnswer: false,
     }
+  }
+
+  componentDidMount () {
+    this.props.getAllCards()
+    this.props.getAllDecks()
   }
 
   nextCard = () => {
@@ -38,13 +48,13 @@ class Flashcard extends React.Component {
   setDeck = async deck => {
     await this.setState({currentCards: deck.cards})
     await this.setState({currentCard: deck.cards[Math.floor(Math.random() * deck.cards.length)]})
-    console.log(this.state, 'in setdeck')
+    await this.setState({deckName: deck.name})
   }
 
   allCards = async () => {
     await this.setState({currentCards: this.props.cards})
     await this.setState({currentCard: this.props.cards[Math.floor(Math.random() * this.props.cards.length)]})
-    console.log('all cards', this.state)
+    await this.setState({deckName: 'All Cards'})
   }
 
   render () {
@@ -78,6 +88,9 @@ class Flashcard extends React.Component {
     else if (this.state.viewAnswer) {
       return (
       <div className="flashcard-container">
+        <div className="title-font">
+          Currently Studying {this.state.deckName} ({this.state.currentCards.length} cards)
+        </div>
         <FlashcardRect toggleAnswer={this.toggleAnswer} >
           <div className="card-back">
             <div><b>Translation:</b> {translation}</div>
@@ -100,11 +113,14 @@ class Flashcard extends React.Component {
   } else {
     return (
       <div className="flashcard-container">
-      <FlashcardRect toggleAnswer={this.toggleAnswer}>
-      <div className="card-front">
-        <div>{term}</div>
-      </div>
-      </FlashcardRect>
+        <div className="title-font">
+          Currently Studying {this.state.deckName} ({this.state.currentCards.length} cards)
+        </div>
+        <FlashcardRect toggleAnswer={this.toggleAnswer}>
+        <div className="card-front">
+          <div>{term}</div>
+        </div>
+        </FlashcardRect>
       </div>
     )
   }
@@ -117,7 +133,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  editLevel: (cardId, level) => dispatch(editLevel(cardId, level))
+  editLevel: (cardId, level) => dispatch(editLevel(cardId, level)),
+  getAllCards: () => dispatch(getAllCards()),
+  getAllDecks: () => dispatch(getAllDecks()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Flashcard)
