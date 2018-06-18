@@ -15,6 +15,10 @@ class AllDecks extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.props.getAllDecks()
+  }
+
   openModal = () => {
     this.setState({modalIsOpen: true})
   }

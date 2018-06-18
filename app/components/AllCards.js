@@ -14,6 +14,9 @@ class AllCards extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.props.getAllCards()
+  }
 
   openModal = () => {
     this.setState({modalIsOpen: true})

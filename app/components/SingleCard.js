@@ -8,6 +8,42 @@ const SingleCard = props => {
       return (crd.id === Number(props.match.params.id))
     }) : null
 
+  const cardDefinitions = (card.definition !== 'Not found'
+    ) ? (
+      <div className="translations-container">
+      {card.dictionaryObject.map((definition, index) => {
+        if (definition.entries[0].senses[0].translations) {
+        return (
+        <div key={index} className={`translation ${card.dictionaryIndex === index ? 'selectedExample' : 'notSelectedExample'}`} onClick={() => props.editDefinition(card, index)}>
+          {definition.entries[0].senses[0].translations.map(sense => sense.text).join(', ')
+          }
+        </div>
+        )
+        } else {
+          return <div className="translation notSelectedExample">Not found</div>
+        }
+      })}
+      </div>
+    ) : (
+      <div className="translation notSelectedExample">'Not found'</div>
+    )
+
+  const cardExamples = (card.example !== 'Not found'
+    ) ? (
+      <div className="examples-container">
+      {card.examplesObject.map((example, index) => {
+        const output = example.domains ? `(${example.domains}) ${example.text}` : example.text
+        return (
+          <div key={index} className={`example ${card.examplesIndex === index ? 'selectedExample' : 'notSelectedExample'}`} onClick={() => props.editExample(card, index)}>
+            {output}
+          </div>
+        )
+      })}
+      </div>
+    ) : (
+      <div className="example notSelectedExample">'Not found'</div>
+    )
+
   if (card) {
     return (
       <div className="single-card-container">
@@ -19,10 +55,8 @@ const SingleCard = props => {
                   Term
                 </div>
               </div>
-              <div className="col m9 card-section">
-                <div className="term">
+              <div className="col m9 card-section term">
                   {card.term}
-                </div>
               </div>
             </div>
           </div>
@@ -36,16 +70,7 @@ const SingleCard = props => {
                 </div>
               </div>
               <div className="col m9 card-section">
-                <div className="translations-container">
-                  {card.dictionaryObject.map((definition, index) => {
-                    return (
-                    <div key={index} className={`translation ${card.dictionaryIndex === index ? 'selectedExample' : 'notSelectedExample'}`} onClick={() => props.editDefinition(card, index)}>
-                      {definition.entries[0].senses[0].translations.map(sense => sense.text).join(', ')
-                      }
-                    </div>
-                    )
-                  })}
-                </div>
+                {cardDefinitions}
               </div>
             </div>
           </div>
@@ -59,16 +84,7 @@ const SingleCard = props => {
                 </div>
               </div>
               <div className="col m9 card-section">
-                <div className="examples-container">
-                  {card.examplesObject.map((example, index) => {
-                    const output = example.domains ? `(${example.domains}) ${example.text}` : example.text
-                    return (
-                      <div key={index} className={`example ${card.examplesIndex === index ? 'selectedExample' : 'notSelectedExample'}`} onClick={() => props.editExample(card, index)}>
-                        {output}
-                      </div>
-                    )
-                  })}
-                </div>
+                {cardExamples}
               </div>
             </div>
           </div>

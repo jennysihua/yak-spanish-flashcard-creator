@@ -32,7 +32,9 @@ const extractExamplesData = (examplesObject, exampleId) => {
 
     const exampleIdPresent = examplesObject ? examplesObject[exampleId] : null
 
-    const example = exampleIdPresent ? `(${examplesObject[exampleId].domains}) ${examplesObject[exampleId].text}` : 'Not found'
+    const exampleDomains = examplesObject[exampleId].domains ? `(${examplesObject[exampleId].domains}) ` : ``
+
+    const example = exampleIdPresent ? `${exampleDomains}${examplesObject[exampleId].text}` : 'Not found'
 
     return ({
       exampleIndices,

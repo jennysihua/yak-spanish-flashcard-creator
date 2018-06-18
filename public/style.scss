@@ -76,6 +76,10 @@ body {
   margin: auto;
 }
 
+.term {
+  font-family: 'Quicksand', sans-serif;
+}
+
 .card-row-container.card-section div {
   margin: auto;
 }
@@ -179,9 +183,14 @@ a:hover {
   width: 100%;
 }
 
-.example, .translation, .term {
+.example, .translation {
   margin-bottom: 25px !important;
   text-align: left;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.examples-container {
+  margin-left: 0
 }
 
 /* Nav bar styles*/
