@@ -57,8 +57,8 @@ class AllDecks extends React.Component {
           ariaHideApp={false}
           contentLabel="Example Modal"
         >
-          <input name="name" type="text" onChange={event => this.changeHandler(event)} />
-          <input name="description" type="text" onChange={event => this.changeHandler(event)} />
+          <input name="name" placeholder="name" type="text" className="center" onChange={event => this.changeHandler(event)} />
+          <input name="description" placeholder="description" type="text" className="center" onChange={event => this.changeHandler(event)} />
           <button onClick={event => this.submitHandler(event)} type="submit" className="submit-modal-button">submit</button>
           <button onClick={this.closeModal} type="submit" className="close-modal-button"><i className="material-icons">close</i></button>
         </Modal>

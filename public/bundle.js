@@ -362,10 +362,10 @@ var AllDecks = function (_React$Component) {
             ariaHideApp: false,
             contentLabel: 'Example Modal'
           },
-          _react2.default.createElement('input', { name: 'name', type: 'text', onChange: function onChange(event) {
+          _react2.default.createElement('input', { name: 'name', placeholder: 'name', type: 'text', className: 'center', onChange: function onChange(event) {
               return _this2.changeHandler(event);
             } }),
-          _react2.default.createElement('input', { name: 'description', type: 'text', onChange: function onChange(event) {
+          _react2.default.createElement('input', { name: 'description', placeholder: 'description', type: 'text', className: 'center', onChange: function onChange(event) {
               return _this2.changeHandler(event);
             } }),
           _react2.default.createElement(
@@ -1314,72 +1314,6 @@ exports.default = FlashcardRect;
 
 /***/ }),
 
-/***/ "./app/components/Home.js":
-/*!********************************!*\
-  !*** ./app/components/Home.js ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-
-var _reducers = __webpack_require__(/*! ../reducers */ "./app/reducers/index.js");
-
-var _ = __webpack_require__(/*! ./ */ "./app/components/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Home = function (_React$Component) {
-  _inherits(Home, _React$Component);
-
-  function Home() {
-    _classCallCheck(this, Home);
-
-    return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
-  }
-
-  _createClass(Home, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      console.log('hello');
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        'hi'
-      );
-    }
-  }]);
-
-  return Home;
-}(_react2.default.Component);
-
-exports.default = Home;
-
-/***/ }),
-
 /***/ "./app/components/Navbar.js":
 /*!**********************************!*\
   !*** ./app/components/Navbar.js ***!
@@ -1977,15 +1911,6 @@ Object.defineProperty(exports, 'AuthForm', {
   }
 });
 
-var _Home = __webpack_require__(/*! ./Home */ "./app/components/Home.js");
-
-Object.defineProperty(exports, 'Home', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_Home).default;
-  }
-});
-
 var _DeckRow = __webpack_require__(/*! ./DeckRow */ "./app/components/DeckRow.js");
 
 Object.defineProperty(exports, 'DeckRow', {
@@ -2065,6 +1990,8 @@ var _ = __webpack_require__(/*! ./ */ "./app/components/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -2082,11 +2009,35 @@ var Root = function (_Component) {
 
   _createClass(Root, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.props.me();
-      this.props.getAllCards();
-      this.props.getAllDecks();
-    }
+    value: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return this.props.me();
+
+              case 2:
+                if (this.props.user.id) {
+                  this.props.getAllCards();
+                  this.props.getAllDecks();
+                }
+
+              case 3:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function componentDidMount() {
+        return _ref.apply(this, arguments);
+      }
+
+      return componentDidMount;
+    }()
   }, {
     key: 'render',
     value: function render() {
@@ -2103,7 +2054,6 @@ var Root = function (_Component) {
           }
         }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/learn', exact: true, component: _.Flashcard }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/home', exact: true, component: _.Home }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/cards', exact: true, component: _.AllCards }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/cards/:id', exact: true, component: _.SingleCard }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/decks', exact: true, component: _.AllDecks }),
@@ -2532,7 +2482,7 @@ exports.default = function () {
     case DELETE_CARD:
       {
         return state.filter(function (card) {
-          return Number(card.id) !== Number(action.cardId);
+          return +card.id !== +action.cardId;
         });
       }
     default:
@@ -15381,7 +15331,7 @@ exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/li
 
 
 // module
-exports.push([module.i, "* {\n  font-family: arial, sans-serif;\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #f0eeeb; }\n\n.card-row-container {\n  width: 80%;\n  height: 150px;\n  margin: 20px auto;\n  position: relative; }\n\n.deck-row {\n  height: 100px; }\n\n.single-card-container, .single-deck-container, .flashcard-container {\n  margin-top: 90px; }\n\n.single-card {\n  width: 80%;\n  margin: 20px auto;\n  position: relative; }\n\n.card-row-container .row {\n  height: 100%; }\n\n.card-button-container {\n  position: absolute;\n  width: 100%;\n  left: 0px;\n  bottom: 15px;\n  text-align: center; }\n\n.card-row-container .card {\n  height: 100%;\n  background-color: rgba(230, 221, 210, 0.5); }\n\n.single-deck-container .card {\n  padding: 10px 0; }\n\n.card-section {\n  height: 100%;\n  text-align: center;\n  padding: 20px;\n  position: relative;\n  display: flex;\n  align-items: center; }\n\n.card-section span {\n  font-family: 'Quicksand', sans-serif;\n  font-size: .8rem;\n  color: rgba(74, 74, 74, 0.8); }\n\n.card-section div {\n  font-family: 'Quicksand', sans-serif;\n  margin: auto; }\n\n.term {\n  font-family: 'Quicksand', sans-serif; }\n\n.card-row-container.card-section div {\n  margin: auto; }\n\n.card-text {\n  margin: auto;\n  font-family: 'Quicksand', sans-serif;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 4;\n  -webkit-box-orient: vertical; }\n\n.card-border {\n  border-left: lightgray dashed 1px; }\n\n.all-cards-container, .all-decks-container {\n  margin-top: 160px; }\n\n.all-items-header {\n  height: 60px;\n  margin: 70px 10%;\n  width: 80%;\n  position: fixed;\n  top: 0;\n  z-index: 2; }\n\n.all-items-header .row {\n  background-color: rgba(196, 178, 178, 0.8);\n  height: 100%; }\n\n.all-items-header .card {\n  background-color: rgba(196, 178, 178, 0.8);\n  height: 100%; }\n\n.card-button-container input {\n  border: none;\n  margin: 0 10px;\n  background-color: transparent;\n  color: rgba(74, 74, 74, 0.8); }\n\nbutton {\n  outline: none;\n  border: none;\n  background: transparent; }\n\nbutton.addButton:hover {\n  color: rgba(44, 120, 82, 0.714); }\n\nbutton.deleteButton:hover {\n  color: #822525; }\n\n.addButton, .deleteButton {\n  position: fixed;\n  bottom: 30px;\n  right: 30px; }\n\nbutton:focus {\n  background-color: transparent; }\n\ninput:focus {\n  outline: none; }\n\ninput:hover {\n  color: rgba(44, 120, 82, 0.714);\n  text-decoration: underline; }\n\ninput:disabled {\n  color: transparent; }\n\n.editButton {\n  position: absolute;\n  right: 10px;\n  top: 5px;\n  font-size: .8rem; }\n\na {\n  color: rgba(74, 74, 74, 0.8); }\n\na:hover {\n  color: rgba(44, 120, 82, 0.714);\n  text-decoration: underline; }\n\n.editButton:hover {\n  color: rgba(44, 120, 82, 0.714);\n  text-decoration: underline; }\n\n.translations-container {\n  width: 100%; }\n\n.example, .translation {\n  margin-bottom: 25px !important;\n  text-align: left;\n  font-family: 'Quicksand', sans-serif; }\n\n.examples-container {\n  margin-left: 0; }\n\n/* Nav bar styles*/\nnav {\n  height: 60px;\n  top: 0;\n  position: fixed;\n  background-color: black;\n  display: flex;\n  justify-content: space-around;\n  padding: 0 10%;\n  z-index: 2; }\n\nnav span {\n  font-family: 'Poiret One', cursive;\n  font-size: 1.3rem; }\n\n.fade {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  height: 130px;\n  background: linear-gradient(to bottom, #f0eeeb, transparent);\n  z-index: 1; }\n\n.material-icons.md-36 {\n  font-size: 36px; }\n\n.material-icons.md-42 {\n  font-size: 42px; }\n\n.input-new-modal {\n  margin: auto;\n  margin-top: 30vh;\n  width: 30%;\n  height: 40%;\n  background-color: rgba(196, 178, 178, 0.8);\n  position: relative; }\n\n.input-new-textarea {\n  width: 80%;\n  height: 60%;\n  margin: 10%; }\n\n.close-modal-button {\n  position: absolute;\n  bottom: 15px;\n  right: 15px; }\n\n.submit-modal-button {\n  position: absolute;\n  bottom: 20px;\n  left: 15px; }\n\n.selectedExample {\n  color: rgba(44, 120, 82, 0.714); }\n\n.notSelectedExample:hover {\n  color: rgba(44, 120, 82, 0.714);\n  text-decoration: underline; }\n\n.card-button-container input {\n  font-family: 'Quicksand', sans-serif;\n  font-size: .8rem; }\n\n.auth-form-container {\n  margin-top: 15%; }\n\n.auth-form {\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.auth-form div {\n  margin: 4px 10px; }\n\n.error-message {\n  margin: 2px 20px;\n  font-size: .7rem;\n  color: red; }\n\n/* label focus color */\n.input-field input[type=text]:focus + label {\n  color: rgba(44, 120, 82, 0.714); }\n\n/* label underline focus color */\n.input-field input[type=text]:focus {\n  border-bottom: 1px solid rgba(44, 120, 82, 0.714);\n  box-shadow: 0 1px 0 0 rgba(44, 120, 82, 0.714); }\n\n/* valid color */\n.input-field input[type=text].valid {\n  border-bottom: 1px solid rgba(44, 120, 82, 0.714);\n  box-shadow: 0 1px 0 0 rgba(44, 120, 82, 0.714); }\n\n/* invalid color */\n.input-field input[type=text].invalid {\n  border-bottom: 1px solid red;\n  box-shadow: 0 1px 0 0 #000; }\n\n.flashcard-container {\n  margin-top: 100px;\n  position: relative; }\n\n.flashcard-rect .card {\n  height: 300px;\n  width: 400px;\n  margin: auto;\n  padding: 15px; }\n\n.card-front div {\n  font-family: 'Quicksand', sans-serif; }\n\n.card-back div {\n  font-family: 'Quicksand', sans-serif;\n  margin-bottom: 10px; }\n\n.flashcard-message {\n  text-align: center;\n  margin-top: 100px;\n  font-family: 'Quicksand', sans-serif;\n  font-size: 1.2rem; }\n\n.hideAnswer {\n  display: none; }\n\n.rating-container {\n  position: absolute;\n  bottom: 0;\n  margin-left: 15%; }\n\n.rating-levels-container {\n  display: flex;\n  justify-content: space-around; }\n\n.card-front {\n  text-align: center;\n  margin: auto; }\n\n.deck-list {\n  text-align: center;\n  margin: 5px; }\n\n.deck-list a {\n  font-family: 'Poiret One', cursive;\n  font-size: 1.3rem; }\n\n.title-font {\n  font-family: 'Poiret One', cursive;\n  font-size: 1.8rem;\n  text-align: center; }\n\n.card-level {\n  font-size: .8rem; }\n\nnav span.hide-nav {\n  color: darkslategray; }\n\n.site-title {\n  font-family: 'Julius Sans One', sans-serif;\n  position: absolute;\n  top: 0px;\n  left: 15px;\n  font-size: 1.5rem; }\n", ""]);
+exports.push([module.i, "* {\n  font-family: arial, sans-serif;\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #f0eeeb; }\n\n.card-row-container {\n  width: 80%;\n  height: 150px;\n  margin: 20px auto;\n  position: relative; }\n\n.deck-row {\n  height: 100px; }\n\n.single-card-container, .single-deck-container, .flashcard-container {\n  margin-top: 90px; }\n\n.single-card {\n  width: 80%;\n  margin: 20px auto;\n  position: relative; }\n\n.card-row-container .row {\n  height: 100%; }\n\n.card-button-container {\n  position: absolute;\n  width: 100%;\n  left: 0px;\n  bottom: 15px;\n  text-align: center; }\n\n.card-row-container .card {\n  height: 100%;\n  background-color: rgba(230, 221, 210, 0.5); }\n\n.single-deck-container .card {\n  padding: 10px 0; }\n\n.card-section {\n  height: 100%;\n  text-align: center;\n  padding: 20px;\n  position: relative;\n  display: flex;\n  align-items: center; }\n\n.card-section span {\n  font-family: 'Quicksand', sans-serif;\n  font-size: .8rem;\n  color: rgba(74, 74, 74, 0.8); }\n\n.card-section div {\n  font-family: 'Quicksand', sans-serif;\n  margin: auto; }\n\n.term {\n  font-family: 'Quicksand', sans-serif; }\n\n.card-row-container.card-section div {\n  margin: auto; }\n\n.card-text {\n  margin: auto;\n  font-family: 'Quicksand', sans-serif;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 4;\n  -webkit-box-orient: vertical; }\n\n.card-border {\n  border-left: lightgray dashed 1px; }\n\n.all-cards-container, .all-decks-container {\n  margin-top: 160px; }\n\n.all-items-header {\n  height: 60px;\n  margin: 70px 10%;\n  width: 80%;\n  position: fixed;\n  top: 0;\n  z-index: 2; }\n\n.all-items-header .row {\n  background-color: rgba(196, 178, 178, 0.8);\n  height: 100%; }\n\n.all-items-header .card {\n  background-color: rgba(196, 178, 178, 0.8);\n  height: 100%; }\n\n.card-button-container input {\n  border: none;\n  margin: 0 10px;\n  background-color: transparent;\n  color: rgba(74, 74, 74, 0.8); }\n\nbutton {\n  outline: none;\n  border: none;\n  background: transparent; }\n\nbutton.addButton:hover {\n  color: rgba(44, 120, 82, 0.714); }\n\nbutton.deleteButton:hover {\n  color: #822525; }\n\n.addButton, .deleteButton {\n  position: fixed;\n  bottom: 30px;\n  right: 30px; }\n\nbutton:focus {\n  background-color: transparent; }\n\ninput:focus {\n  outline: none; }\n\ninput:hover {\n  color: rgba(44, 120, 82, 0.714);\n  text-decoration: underline; }\n\ninput:disabled {\n  color: transparent; }\n\n.editButton {\n  position: absolute;\n  right: 10px;\n  top: 5px;\n  font-size: .8rem; }\n\na {\n  color: rgba(74, 74, 74, 0.8); }\n\na:hover {\n  color: rgba(44, 120, 82, 0.714);\n  text-decoration: underline; }\n\n.editButton:hover {\n  color: rgba(44, 120, 82, 0.714);\n  text-decoration: underline; }\n\n.translations-container {\n  width: 100%; }\n\n.example, .translation {\n  margin-bottom: 25px !important;\n  text-align: left;\n  font-family: 'Quicksand', sans-serif; }\n\n.examples-container {\n  margin-left: 0; }\n\n/* Nav bar styles*/\nnav {\n  height: 60px;\n  top: 0;\n  position: fixed;\n  background-color: black;\n  display: flex;\n  justify-content: space-around;\n  padding: 0 10%;\n  z-index: 2; }\n\nnav span {\n  font-family: 'Poiret One', cursive;\n  font-size: 1.3rem; }\n\n.fade {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  height: 130px;\n  background: linear-gradient(to bottom, #f0eeeb, transparent);\n  z-index: 1; }\n\n.material-icons.md-36 {\n  font-size: 36px; }\n\n.material-icons.md-42 {\n  font-size: 42px; }\n\n.input-new-modal {\n  margin: auto;\n  margin-top: 30vh;\n  width: 30%;\n  height: 40%;\n  background-color: rgba(196, 178, 178, 0.8);\n  position: relative; }\n\n.input-new-textarea {\n  width: 80%;\n  height: 60%;\n  margin: 10%; }\n\n.close-modal-button {\n  position: absolute;\n  bottom: 15px;\n  right: 15px; }\n\n.submit-modal-button {\n  position: absolute;\n  bottom: 20px;\n  left: 15px; }\n\n.selectedExample {\n  color: rgba(44, 120, 82, 0.714); }\n\n.notSelectedExample:hover {\n  color: rgba(44, 120, 82, 0.714);\n  text-decoration: underline; }\n\n.card-button-container input {\n  font-family: 'Quicksand', sans-serif;\n  font-size: .8rem; }\n\n.auth-form-container {\n  margin-top: 15%; }\n\n.auth-form {\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.auth-form div {\n  margin: 4px 10px; }\n\n.error-message {\n  margin: 2px 20px;\n  font-size: .7rem;\n  color: red; }\n\n/* label focus color */\n.input-field input[type=text]:focus + label {\n  color: rgba(44, 120, 82, 0.714); }\n\n/* label underline focus color */\n.input-field input[type=text]:focus {\n  border-bottom: 1px solid rgba(44, 120, 82, 0.714);\n  box-shadow: 0 1px 0 0 rgba(44, 120, 82, 0.714); }\n\n/* valid color */\n.input-field input[type=text].valid {\n  border-bottom: 1px solid rgba(44, 120, 82, 0.714);\n  box-shadow: 0 1px 0 0 rgba(44, 120, 82, 0.714); }\n\n/* invalid color */\n.input-field input[type=text].invalid {\n  border-bottom: 1px solid red;\n  box-shadow: 0 1px 0 0 #000; }\n\n.flashcard-container {\n  margin-top: 100px;\n  position: relative; }\n\n.flashcard-rect .card {\n  height: 300px;\n  width: 400px;\n  margin: auto;\n  padding: 15px; }\n\n.card-front div {\n  font-family: 'Quicksand', sans-serif; }\n\n.card-back div {\n  font-family: 'Quicksand', sans-serif;\n  margin-bottom: 10px; }\n\n.flashcard-message {\n  text-align: center;\n  margin-top: 100px;\n  font-family: 'Quicksand', sans-serif;\n  font-size: 1.2rem; }\n\n.hideAnswer {\n  display: none; }\n\n.rating-container {\n  position: absolute;\n  bottom: 0;\n  margin-left: 15%; }\n\n.rating-levels-container {\n  display: flex;\n  justify-content: space-around; }\n\n.card-front {\n  text-align: center;\n  margin: auto; }\n\n.deck-list {\n  text-align: center;\n  margin: 5px; }\n\n.deck-list a {\n  font-family: 'Poiret One', cursive;\n  font-size: 1.3rem; }\n\n.title-font {\n  font-family: 'Poiret One', cursive;\n  font-size: 1.8rem;\n  text-align: center; }\n\n.card-level {\n  font-size: .8rem; }\n\nnav span.hide-nav {\n  color: darkslategray; }\n\n.site-title {\n  font-family: 'Julius Sans One', sans-serif;\n  position: absolute;\n  top: 0px;\n  left: 15px;\n  font-size: 1.5rem; }\n\n.center {\n  text-align: center; }\n", ""]);
 
 // exports
 

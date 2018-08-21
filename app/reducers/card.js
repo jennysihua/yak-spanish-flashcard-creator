@@ -23,8 +23,8 @@ const editedCard = card => ({
 })
 
 const deletedCard = cardId => ({
-  type: DELETE_CARD,
-  cardId
+    type: DELETE_CARD,
+    cardId
 })
 
 export const getAllCards = () => async dispatch => {
@@ -85,7 +85,7 @@ export default (state = initialState, action) => {
     }
     case DELETE_CARD: {
       return state.filter(card => {
-        return Number(card.id) !== Number(action.cardId)
+        return +card.id !== +action.cardId
       })
     }
     default: {

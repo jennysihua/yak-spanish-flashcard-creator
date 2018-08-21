@@ -12,17 +12,18 @@ import {
   SingleCard,
   Navbar,
   AuthForm,
-  Home,
   AllDecks,
   SingleDeck,
   Flashcard
 } from './'
 
 class Root extends Component {
-  componentDidMount () {
-    this.props.me()
-    this.props.getAllCards()
-    this.props.getAllDecks()
+  async componentDidMount () {
+    await this.props.me()
+    if (this.props.user.id){
+      this.props.getAllCards()
+      this.props.getAllDecks()
+    }
   }
 
   render () {
@@ -40,7 +41,6 @@ class Root extends Component {
           )}
         />
         <Route path="/learn" exact component={Flashcard} />
-        <Route path="/home" exact component={Home} />
         <Route path="/cards" exact component={AllCards} />
         <Route path="/cards/:id" exact component={SingleCard} />
         <Route path="/decks" exact component={AllDecks} />

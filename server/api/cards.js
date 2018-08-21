@@ -138,6 +138,7 @@ router.delete('/:id', async (req, res, next) => {
   try {
     const card = await Card.findById(req.params.id)
     await card.destroy()
+    res.send('Success')
   } catch (err) {
     next(err)
   }

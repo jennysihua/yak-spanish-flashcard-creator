@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Deck, cardDeck, Card} = require('../db')
+const {Deck, Card} = require('../db')
 
 router.get('/', async (req, res, next) => {
   try {
