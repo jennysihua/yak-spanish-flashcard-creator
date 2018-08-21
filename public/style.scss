@@ -296,6 +296,12 @@ nav span {
   margin: 4px 10px
 }
 
+.error-message{
+  margin: 2px 20px;
+  font-size: .7rem;
+  color: red;
+}
+
    /* label focus color */
 .input-field input[type=text]:focus + label {
   color: $hover;
