@@ -6,7 +6,7 @@ const AuthForm = props => {
 
   const {error} = props
 
-  const name = props.location.pathname
+  const name = props.location.pathname.slice(1)
 
   const handleSubmit = (event) => {
     event.preventDefault()

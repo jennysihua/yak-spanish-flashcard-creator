@@ -496,7 +496,7 @@ var AuthForm = function AuthForm(props) {
   var error = props.error;
 
 
-  var name = props.location.pathname;
+  var name = props.location.pathname.slice(1);
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
